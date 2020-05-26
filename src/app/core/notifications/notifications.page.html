@@ -1,0 +1,33 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list mode="ios" class="ion-no-margin list-core">
+    <ion-list-header mode="ios">
+      <h3>Notifications</h3>
+    </ion-list-header>
+
+    <ion-card mode="ios" [hidden]="isNotificationsEmpty">
+      <ion-card-content>
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-icon name="alert-circle" slot="start" color="warning"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h3>Notification received</h3>
+            <p>20/04/2020</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <div [hidden]="!isNotificationsEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No notifications received</p>
+    </div>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Apply eRebate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-slides pager="true" [options]="slidesOptions">
+    <ion-slide *ngFor="let page of pages">
+      <div class="content-container">
+        <img [src]="page.path">
+        <h2 class="ion-no-margin ion-margin-top">{{page.title}}</h2>
+        <p class="ion-no-margin">{{page.text}}</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+  <ion-button expand="block" mode="ios" shape="round" (click)="navigatePage('/application/apply')">Start</ion-button>
+</ion-footer>

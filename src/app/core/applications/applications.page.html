@@ -1,0 +1,39 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Applications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list mode="ios" class="ion-no-margin list-core">
+    <ion-list-header mode="ios">
+      <h3>Applications List</h3>
+    </ion-list-header>
+
+    <ion-card mode="ios" [hidden]="isApplicationsEmpty">
+      <ion-card-content class="ion-no-padding ion-padding-start ion-padding-end">
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-icon slot="start" name="document-text-outline" color="primary"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>14/4/2020</h2>
+            <p>No. 25, Lorong Pablo Escobar</p>
+        </ion-label>
+        <ion-chip color="success">
+          <ion-label>Approved</ion-label>
+        </ion-chip>
+        </ion-item>
+      </ion-card-content>
+      <ion-card-header color="success" class="ion-no-padding ion-no-margin">
+        <ion-button expand="full" class="ion-no-margin">Click to view</ion-button>
+      </ion-card-header>
+    </ion-card>
+
+    <div [hidden]="!isApplicationsEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No application submitted yet</p>
+    </div>
+  </ion-list>
+</ion-content>

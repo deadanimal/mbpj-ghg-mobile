@@ -1,0 +1,18 @@
+.content-container {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100vh;
+    height: 80vh;
+    img {
+        width: 16rem;
+    }
+    p {
+        margin-top: 1rem;
+        padding-left: 3rem;
+        padding-right: 3rem
+    }
+}
+

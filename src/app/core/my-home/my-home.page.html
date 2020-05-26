@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MyHome</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-list mode="ios" class="ion-no-margin list-core">
+    <ion-list-header mode="ios">
+      <h3>Registered Homes</h3>
+    </ion-list-header>
+
+    <ion-card mode="ios">
+      <ion-card-content>
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-label>
+            <h2>{{id_serial}}</h2>
+            <p>Submitted on {{created_at}}</p>
+          </ion-label>
+          <ion-button size="small" shape="round" slot="end">View</ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <img [src]="iconError" class="error-img">
+    <p class="error-text">No home registered yet, please register using the button below</p>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addHome('/my-home-add/')">
+    <ion-fab-button>
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list mode="ios" class="ion-no-margin list-core">
+    <ion-list-header mode="ios">
+      <h3>Personal</h3>
+    </ion-list-header>
+
+    <ion-item lines="none" detail (click)="navigatePage('/information')">
+      <ion-icon name="person-outline" color="primary" slot="start"></ion-icon>
+      <ion-label>
+        <h3>Information</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-list-header mode="ios">
+      <h3>Support</h3>
+    </ion-list-header>
+
+    <ion-item lines="none" detail (click)="navigatePage('/helpdesk')">
+      <ion-icon name="help-buoy-outline" color="primary" slot="start"></ion-icon>
+      <ion-label>
+        <h3>Helpdesk</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" detail (click)="navigatePage('/faq')">
+      <ion-icon name="help-circle-outline" color="primary" slot="start"></ion-icon>
+      <ion-label>
+        <h3>FAQ</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" detail (click)="navigatePage('/about')">
+      <ion-icon name="information-circle-outline" color="primary" slot="start"></ion-icon>
+      <ion-label>
+        <h3>About</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-list-header mode="ios">
+      <h3>Language</h3>
+    </ion-list-header>
+
+    <ion-item class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios"></ion-label>
+      <ion-select 
+        value="English"
+        mode="ios"
+        placeholder="Language"
+      >
+        <ion-select-option value="EN">English</ion-select-option>
+        <ion-select-option value="BM">Bahasa Malaysia</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

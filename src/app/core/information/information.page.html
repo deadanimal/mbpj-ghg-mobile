@@ -1,0 +1,114 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+	<ion-toolbar mode="ios">
+		<ion-buttons slot="start">
+			<ion-back-button 
+				defaultHref="/core/profile"
+				routerLink="/core/profile"
+				routerDirection="back"
+			>
+			</ion-back-button>
+    </ion-buttons>
+    <ion-title>Information</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list *ngIf="!isEdit" class="ion-no-margin list-core" mode="ios">
+    <ion-item class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Full Name</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">New NRIC</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Old NRIC</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Mobile</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Phone</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Occupation</ion-label>
+      <ion-input value="" disabled mode="ios"></ion-input>
+    </ion-item>
+    
+    <ion-item class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">User Type</ion-label>
+      <ion-select value="" disabled mode="ios"></ion-select>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Gender</ion-label>
+      <ion-select value="" disabled mode="ios"></ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="isEdit" class="ion-no-margin list-core" mode="ios">
+    <form [formGroup]="userForm">
+      <ion-item class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Full Name</ion-label>
+        <ion-input value="Eric Leong" mode="ios" formControlName="full_name"></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">New NRIC / Passport</ion-label>
+        <ion-input value="" mode="ios" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Old NRIC</ion-label>
+        <ion-input placeholder="A271281" mode="ios" formControlName="nric_old" type="number"></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Mobile</ion-label>
+        <ion-input placeholder="0129121231" value="" mode="ios" formControlName="mobile" type="number"></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Phone</ion-label>
+        <ion-input placeholder="0371273173" value="" mode="ios" formControlName="phone" type="number"></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Occupation</ion-label>
+        <ion-input placeholder="Teacher" mode="ios"formControlName="occupation"></ion-input>
+      </ion-item>
+  
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Gender</ion-label>
+        <ion-select 
+          value=""
+          mode="ios"
+          formControlName="gender"
+          placeholder="Male"
+        >
+          <ion-select-option value="FM">Female</ion-select-option>
+          <ion-select-option value="ML">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">NRIC Photo</ion-label>
+        <ion-button mode="ios" color="primary" expand="block" (click)="getImage()">Upload</ion-button>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+  <ion-button *ngIf="!isEdit" expand="block" mode="ios" shape="round" color="secondary" (click)="edit()">Edit</ion-button>
+  <ion-button *ngIf="isEdit" expand="block" mode="ios" shape="round" color="primary" (click)="edit()">Save</ion-button>
+</ion-footer>

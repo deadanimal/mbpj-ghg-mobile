@@ -73,6 +73,22 @@ const routes: Routes = [
   {
     path: 'information',
     loadChildren: () => import('./core/information/information.module').then( m => m.InformationPageModule)
+  },
+  {
+    path: 'auth/login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'auth/register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'auth/forgot',
+    loadChildren: () => import('./auth/forgot/forgot.module').then( m => m.ForgotPageModule)
+  },
+  {
+    path: 'auth/walkthrough',
+    loadChildren: () => import('./pages/walkthrough/walkthrough.module').then( m => m.WalkthroughPageModule)
   }
 ];
 

@@ -1,0 +1,50 @@
+<ion-content class="ion-padding" scrollX=false>
+	<ion-slides #introSlides [options]="sliderConfig" (ionSlideDidChange)="slideDidChange()">
+		<ion-slide *ngFor="let slide of slides">
+			<ion-skeleton-text *ngIf="!imgLoaded" animated class="intro-text" slot="start">
+			</ion-skeleton-text>
+			<ion-img src="{{slide.image}}" (ionImgWillLoad)="imgLoaded=false" (ionImgDidLoad)="imgLoaded=true">
+			</ion-img>
+			<h1 class="ion-padding-end ion-padding-start">{{slide.text}}</h1>
+		</ion-slide>
+	</ion-slides>
+</ion-content>
+
+<ion-footer class="ion-padding ion-no-border" transparent>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-button 
+					*ngIf="!endReached"
+					class="round"
+					fill="clear"
+					shape="round"
+					(click)="navigatePage('login')"
+					color="primary"
+				>
+					Skip
+				</ion-button>
+			</ion-col>
+			<ion-col class="ion-text-right">
+				<ion-button
+					*ngIf="!endReached"
+					class="round"
+					shape="round"
+					color="primary"
+					(click)="next()"
+				>
+					Next
+				</ion-button>
+				<ion-button
+					*ngIf="endReached"
+					class="round"
+					shape="round"
+					color="primary"
+					(click)="navigatePage('login')"
+				>
+					Enter
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>

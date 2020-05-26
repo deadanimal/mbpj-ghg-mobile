@@ -1,0 +1,56 @@
+<ion-content class="ion-padding">
+	<ion-grid style="height: 100%">
+		<ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%; flex-direction: column">
+			<ion-col>
+				<img src="../assets/thunder.svg">
+				<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+					<p class="ion-text-center ion-padding-bottom">Please enter your credentials</p>
+					<ion-item lines="none">
+						<ion-label position="stacked">Your NRIC</ion-label>
+						<ion-input type="text" formControlName="username" placeholder="Your NRIC"></ion-input>
+					</ion-item>
+
+					<div class="validation-errors">
+						<ng-container *ngFor="let message of loginFormMessages.username">
+							<div 
+								class="error-message"
+								*ngIf="loginForm.get('username').hasError(message.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)"
+							>
+								{{ message.message }}
+							</div>
+						</ng-container>
+					</div>
+
+					<ion-item lines="none">
+						<ion-label position="stacked">Password</ion-label>
+						<ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+					</ion-item>
+
+					<div class="validation-errors ion-text-right">
+						<p><a (click)="navigateForgotPage()">Forgot Password </a></p>
+					</div>
+
+					<div class="ion-text-center">
+						<ion-button 
+							*ngIf="!isLoading"
+							type="submit"
+							[disabled]="!loginForm.valid"
+							shape="round"
+							color="primary"
+						>
+							Login
+						</ion-button>
+						<ion-button disabled *ngIf="isLoading" type="submit" shape="round" color="primary">
+							<ion-spinner name="bubbles"></ion-spinner>
+						</ion-button>
+						<!--<p>No account yet? <a (click)="navigateRegisterPage()">Create an account.</a> </p>-->
+					</div>
+				</form>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>

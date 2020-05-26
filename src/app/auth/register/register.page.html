@@ -1,0 +1,65 @@
+<ion-content class="form-content ion-padding">
+	<ion-grid style="height: 100%">
+		<ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%; flex-direction: column">
+			<img src="../assets/img/register.svg">
+			<p class="ion-text-center ion-padding-bottom">Please enter your data</p>
+
+			<form
+				class="form"
+				[formGroup]="registerForm"
+				(ngSubmit)="tryRegister(registerForm.value)"
+			>
+				<ion-item lines="none">
+					<ion-input type="text" formControlName="name" placeholder="Your Name"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let message of registerFormMessages.name">
+						<div 
+							class="error-message"
+							*ngIf="registerForm.get('name').hasError(message.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)"
+						>
+							{{ message.message }}
+						</div>
+					</ng-container>
+				</div>
+
+				<ion-item lines="none">
+					<ion-input type="text" formControlName="email" placeholder="Your Email"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let message of registerFormMessages.email">
+						<div 
+							class="error-message"
+							*ngIf="registerForm.get('email').hasError(message.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+						>
+							{{ message.message }}
+						</div>
+					</ng-container>
+				</div>
+
+				<ion-item lines="none">
+					<ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let message of registerFormMessages.password">
+						<div 
+							class="error-message"
+							*ngIf="registerForm.get('password').hasError(message.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+							{{ message.message }}
+						</div>
+					</ng-container>
+				</div>
+
+				<div class="ion-text-center">
+					<ion-button class="register-button" type="submit" [disabled]="!registerForm.valid">Register
+					</ion-button>
+					<p class="go-to-login">Already have an account? <a (click)="navigateLoginPage()">Try to Log In.</a>
+					</p>
+				</div>
+			</form>
+		</ion-row>
+	</ion-grid>
+</ion-content>

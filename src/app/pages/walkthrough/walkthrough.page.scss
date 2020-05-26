@@ -1,0 +1,29 @@
+ion-content {
+    --padding-end: 24px;
+    --padding-start: 24px;
+    --overflow: hidden;
+    --background: #FFF;
+}
+  
+ion-footer {
+    background: #FFF;
+}
+  
+ion-slide {
+    height: 80vh;
+    flex-direction: column;
+}
+  
+ion-img {
+    max-width: 70vw;
+    max-height: 70vh;
+    margin-bottom: 4vh;
+    overflow: hidden;
+}
+
+.round {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --box-shadow: none;
+}
+  

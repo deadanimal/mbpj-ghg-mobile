@@ -1,0 +1,68 @@
+<ion-header mode="ios" no-border>
+	<ion-toolbar mode="ios">
+		<ion-buttons slot="start">
+			<ion-back-button 
+				defaultHref="/auth/login"
+				routerLink="/auth/login"
+				routerDirection="back"
+			>
+			</ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen scrollY="false">
+	<ion-grid style="height: 100%">
+		<ion-row 
+			class="ion-align-items-center ion-justify-content-center"
+			style="height: 100%; flex-direction: column"
+		>
+			<h2 class="title">Reset password</h2>
+			<p 
+				class="subtitle" 
+				style="max-width: 240px; text-align: center; padding-bottom: 20px;"
+			>
+				Enter your email and we will send you a reset link
+			</p>
+
+			<form class="form" [formGroup]="forgotForm">
+				<ion-item lines="none">
+					<ion-input type="text" formControlName="email" placeholder="Enter your email"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let message of forgotFormMessages.email">
+						<div 
+							class="error-message"
+							*ngIf="forgotForm.get('email').hasError(message.type) && (forgotForm.get('email').dirty || forgotForm.get('email').touched)"
+						>
+							{{ message.message }}
+						</div>
+					</ng-container>
+				</div>
+
+				<div class="ion-text-center">
+					<ion-button 
+						*ngIf="!isLoading"
+						type="submit"
+						[disabled]="!forgotForm.valid"
+						shape="round"
+						(click)="resetPassword()" 
+						color="primary"
+					>
+						Reset Password
+					</ion-button>
+					<ion-button
+						disabled
+						*ngIf="isLoading"
+						type="submit"
+						shape="round"
+						color="primary"
+					>
+						<ion-spinner name="bubbles"></ion-spinner>
+					</ion-button>
+				</div>
+			</form>
+		</ion-row>
+	</ion-grid>
+</ion-content>

@@ -12,6 +12,8 @@ export class MyHomePage implements OnInit {
 
   // Data
   houses: House[] = []
+  id_serial = 124124
+  created_at = '12/05/2020'
 
   // Image
   iconError = 'assets/img/icon/error-404.svg'

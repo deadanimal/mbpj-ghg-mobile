@@ -1,0 +1,48 @@
+:host {
+    background: #fff no-repeat center/cover url('src/assets/img/background/bg-mbpj-2-blur.jpg');
+    text-align: center;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+ion-content {
+    --padding-end: 24px;
+    --padding-start: 24px;
+    --overflow: hidden;
+    --background: transparent;
+}
+  
+ion-footer {
+    background: transparent;
+}
+
+.main-content {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    height: 100vh;
+}
+
+
+img {
+    max-width: 8rem;
+}
+
+.login-title {
+    margin-top: 0.5vh;
+    margin-bottom: 2vh;
+    h2 {
+        font-size: 1.5em;
+        color: white;
+    }
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: white;
+}

@@ -5,7 +5,7 @@ import { CoreLayoutComponent } from './layouts/core-layout/core-layout.component
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'core/home',
+    redirectTo: 'auth/walkthrough',
     pathMatch: 'full'
   },
   {
@@ -89,6 +89,10 @@ const routes: Routes = [
   {
     path: 'auth/walkthrough',
     loadChildren: () => import('./pages/walkthrough/walkthrough.module').then( m => m.WalkthroughPageModule)
+  },
+  {
+    path: 'auth/start',
+    loadChildren: () => import('./pages/start/start.module').then( m => m.StartPageModule)
   }
 ];
 

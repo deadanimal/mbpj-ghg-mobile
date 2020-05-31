@@ -14,8 +14,8 @@
       <h3>Registered Homes</h3>
     </ion-list-header>
 
-    <ion-card mode="ios">
-      <ion-card-content>
+    <ion-card mode="ios" [hidden]="isMyHomesEmpty">
+      <ion-card-content class="ion-no-padding ion-padding-start ion-padding-end">
         <ion-item class="ion-no-padding" lines="none">
           <ion-label>
             <h2>{{id_serial}}</h2>
@@ -26,11 +26,13 @@
       </ion-card-content>
     </ion-card>
 
-    <img [src]="iconError" class="error-img">
-    <p class="error-text">No home registered yet, please register using the button below</p>
+    <div [hidden]="!isMyHomesEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No home registered yet, please register using the button below</p>
+    </div>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addHome('/my-home-add/')">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addHome('/my-home/add/')">
     <ion-fab-button>
       <ion-icon name="add-circle-outline"></ion-icon>
     </ion-fab-button>

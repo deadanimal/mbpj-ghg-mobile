@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { ToastController, MenuController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,77 +11,65 @@ import { ToastController, MenuController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
+  // Image
+  imgMBPJ = 'assets/img/organization/mbpj-logo.png'
+  imgSmartPJ = 'assets/img/organization/smart-pj.png'
+
   // Form
   registerForm: FormGroup;
   registerFormMessages = {
-    'name': [
-      { type: 'required', message: 'Name is required.' },
-      { type: 'pattern', message: 'Enter a valid name.' }
-    ],
-    'email': [
+    'username': [
       { type: 'required', message: 'Email is required.' },
       { type: 'pattern', message: 'Enter a valid email.' }
     ],
-    'password': [
+    'password1': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'At least 6 characters long.' }
+    ],
+    'password2': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' }
     ]
   };
+
+  // Checker
+  isLoading: boolean = false
+
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastCtrl: ToastController,
-    public menuCtrl: MenuController
+    private toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
-    this.menuCtrl.enable(false); //Disable lateral menu
-
     this.registerForm = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
+      username: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      name: new FormControl('', Validators.compose([
+      password1: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9 ]*$')
       ])),
-      password: new FormControl('', Validators.compose([
+      password2: new FormControl('', Validators.compose([
         Validators.minLength(6),
         Validators.required
       ])),
     });
   }
 
-  tryRegister(value) {
-    /*
-    this.authService.doRegister(value)
-      .then(res => {
-        console.log(res);
-
-        this.showToast("Your account has been created");
-        this.router.navigate(["/login"]);
-
-      }, err => {
-        console.log(err);
-        if (err.code === 'auth/email-already-in-use') {
-          this.showToast(value.email + " is already in use. Try another.");
-        } else {
-          this.showToast("There was an error. Please try again.");
-        }
-      })
-    */
-  }
-
   register() {
+    this.isLoading = true
     this.authService.registerAccount(this.registerForm.value).subscribe(
       () => {
         // Success
+        this.isLoading = false
       },
       () => {
         // Failed
+        this.isLoading = false
       },
       () => {
         // After

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-walkthrough',
   templateUrl: './walkthrough.page.html',
@@ -18,16 +19,15 @@ export class WalkthroughPage implements OnInit {
     speed: 400
   }
   slides = [
-    { "image": "/assets/img/intro/smarthouse.svg", "text": "Smart home monitoring easier" },
-    { "image": "/assets/img/intro/development.svg", "text": "IoT for your smart house" },
-    { "image": "/assets/img/intro/events.svg", "text": "Maintenance predictions in your hand" },
-    { "image": "/assets/img/intro/calendar.svg", "text": "Manage maintenances and monitor your appliances" }
+    { image: 'assets/img/ecocon/03-eco-earth.svg', text: 'Together to help save the earth' },
+    { image: 'assets/img/ecocon/28-pure-nature.svg', text: 'Greening the earth' }
   ];
 
   constructor(
     private router: Router,
     public menuCtrl: MenuController
   ) {
+    
   }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class WalkthroughPage implements OnInit {
   }
 
   navigatePage(path: string) {
-    let navigationPath = '/' + path
+    let navigationPath = path
     this.router.navigate([navigationPath])
   }
 

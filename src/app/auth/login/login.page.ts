@@ -11,6 +11,10 @@ import { NotifyService } from 'src/app/shared/handlers/notify/notify.service';
 })
 export class LoginPage implements OnInit {
 
+  // Image
+  imgMBPJ = 'assets/img/organization/mbpj-logo.png'
+  imgSmartPJ = 'assets/img/organization/smart-pj.png'
+
   // Form
   loginForm: FormGroup;
   loginFormMessages = {
@@ -24,7 +28,7 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  // Loading
+  // Checker
   isLoading: boolean = false
 
   constructor(
@@ -54,7 +58,8 @@ export class LoginPage implements OnInit {
   login() {
     this.isLoading = true
     console.log(this.loginForm.value)
-    this.authService.obtainToken(this.loginForm.value).subscribe(
+    this.navigateHomePage()
+    /*this.authService.obtainToken(this.loginForm.value).subscribe(
       () => {
         // Success
         this.isLoading = false
@@ -69,20 +74,21 @@ export class LoginPage implements OnInit {
         this.navigateHomePage()
       }
     )
+    */
   }
 
   navigateHomePage() {
-    this.router.navigate(['/core/dashboard'], {
+    this.router.navigate(['/core/home'], {
       replaceUrl: true
     })
   }
 
   navigateForgotPage() {
-    this.router.navigate(['/forgot'])
+    this.router.navigate(['/auth/forgot'])
   }
 
   navigateRegisterPage() {
-    this.router.navigate(['/register'])
+    this.router.navigate(['/auth/register'])
   }
 
 }

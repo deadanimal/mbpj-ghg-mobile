@@ -2,8 +2,8 @@
 	<ion-toolbar mode="ios">
 		<ion-buttons slot="start">
 			<ion-back-button 
-				defaultHref="/my-home"
-				routerLink="/my-home"
+				defaultHref="/core/my-home"
+				routerLink="/core/my-home"
 				routerDirection="back"
 			>
 			</ion-back-button>
@@ -12,6 +12,7 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-
+<ion-content class="ion-padding" fullscreen>
+	<img [src]="imgConstruction">
+	<p class="ion-text-center construction-text">Page is under construction</p>
 </ion-content>

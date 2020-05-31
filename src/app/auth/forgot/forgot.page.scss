@@ -1,5 +1,10 @@
-ion-content {
-    --background: #FFF;
+.main-content {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    height: 100%;
 }
 
 .form {
@@ -27,25 +32,24 @@ ion-content {
   
     ion-item {
         --background: transparent;
+        --inner-padding-end: 0;
         border-radius: 15px;
     }
 }
   
 img {
-    display: block;
-    margin: 0 auto;
-    max-width: 50%;
-    padding-bottom: 25px;
+    max-width: 8rem;
 }
 
-  
-// Avoid keyboard to hide or move elements in the UI
-@media (max-height: 450px) {
-    h2.title {
-        display: none;
-    }
-    p.subtitle {
-        display: none;
-    }
+ion-button {
+    --border-radius: 50px;
+    --box-shadow: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 40px;
 }
-  
+
+.copyright {
+    font-size: 0.8rem;
+    color: black;
+}

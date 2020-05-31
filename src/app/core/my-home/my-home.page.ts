@@ -18,6 +18,9 @@ export class MyHomePage implements OnInit {
   // Image
   iconError = 'assets/img/icon/error-404.svg'
 
+  // Checker
+  isMyHomesEmpty = true
+
   constructor(
     private houseService: HousesService,
     private router: Router

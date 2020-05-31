@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   public role: string = ''
 
   // Checker
-  isApplication?: boolean = false
+  isApplicationEmpty: boolean = true
 
   // Data
   applications: Application[] = []
@@ -23,7 +23,10 @@ export class HomePage implements OnInit {
   created_at = '22/04/2020'
 
   // Image
-  card1 = ''
+  imgMyHome = 'assets/img/default/house.jpg'
+  imgApply = 'assets/img/default/form.jpg'
+  imgNotification = 'assets/img/default/notification.jpg'
+  imgHistory = 'assets/img/default/bookshelf.jpg'
   iconError = 'assets/img/icon/error-404.svg'
 
   constructor(
@@ -49,7 +52,7 @@ export class HomePage implements OnInit {
   }
 
   navigatePage(path: string) {
-    this.router.navigate(['/core/' + path])
+    this.router.navigate([path])
   }
 
   navigateApplication(application: Application) {

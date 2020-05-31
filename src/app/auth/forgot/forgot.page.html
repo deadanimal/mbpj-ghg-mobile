@@ -1,4 +1,4 @@
-<ion-header mode="ios" no-border>
+<ion-header mode="ios">
 	<ion-toolbar mode="ios">
 		<ion-buttons slot="start">
 			<ion-back-button 
@@ -11,58 +11,72 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" fullscreen scrollY="false">
-	<ion-grid style="height: 100%">
-		<ion-row 
-			class="ion-align-items-center ion-justify-content-center"
-			style="height: 100%; flex-direction: column"
-		>
-			<h2 class="title">Reset password</h2>
-			<p 
-				class="subtitle" 
-				style="max-width: 240px; text-align: center; padding-bottom: 20px;"
-			>
-				Enter your email and we will send you a reset link
-			</p>
-
-			<form class="form" [formGroup]="forgotForm">
-				<ion-item lines="none">
-					<ion-input type="text" formControlName="email" placeholder="Enter your email"></ion-input>
-				</ion-item>
-
-				<div class="validation-errors">
-					<ng-container *ngFor="let message of forgotFormMessages.email">
-						<div 
-							class="error-message"
-							*ngIf="forgotForm.get('email').hasError(message.type) && (forgotForm.get('email').dirty || forgotForm.get('email').touched)"
-						>
-							{{ message.message }}
+<ion-content class="ion-padding" fullscreen>
+	<div class="main-content">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<img [src]="imgMBPJ">
+				</ion-col>
+				<ion-col>
+					<img [src]="imgSmartPJ">
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<form class="form" [formGroup]="resetForm" (ngSubmit)="login()">
+						<p class="ion-text-center ion-padding-bottom">Please enter your credentials</p>
+						<ion-item lines="none" class="ion-no-padding ion-no-margin">
+							<ion-label position="stacked">Your Email</ion-label>
+							<ion-input type="text" formControlName="email" placeholder="Your Email"></ion-input>
+						</ion-item>
+	
+						<div class="validation-errors">
+							<ng-container *ngFor="let message of resetFormMessage.email">
+								<div 
+									class="error-message"
+									*ngIf="resetForm.get('email').hasError(message.type) && (resetForm.get('email').dirty || resetForm.get('email').touched)"
+								>
+									{{ message.message }}
+								</div>
+							</ng-container>
 						</div>
-					</ng-container>
-				</div>
+	
+						<div class="ion-text-center">
+							<ion-button 
+								*ngIf="!isLoading"
+								type="submit"
+								[disabled]="!resetForm.valid"
+								shape="round"
+								color="primary"
+								mode="ios"
+							>
+								Reset
+							</ion-button>
+							<ion-button 
+								disabled
+								*ngIf="isLoading"
+								type="submit"
+								shape="round"
+								color="primary"
+								mode="ios"
+							>
+								<ion-spinner name="bubbles"></ion-spinner>
+							</ion-button>
+						</div>
+					</form>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>
 
-				<div class="ion-text-center">
-					<ion-button 
-						*ngIf="!isLoading"
-						type="submit"
-						[disabled]="!forgotForm.valid"
-						shape="round"
-						(click)="resetPassword()" 
-						color="primary"
-					>
-						Reset Password
-					</ion-button>
-					<ion-button
-						disabled
-						*ngIf="isLoading"
-						type="submit"
-						shape="round"
-						color="primary"
-					>
-						<ion-spinner name="bubbles"></ion-spinner>
-					</ion-button>
-				</div>
-			</form>
+<ion-footer class="ion-padding ion-no-border" mode="ios" translucent>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+        		<p class="copyright ion-text-center">Hak cipta terpelihara Majlis Bandaraya Petaling Jaya</p>
+			</ion-col>
 		</ion-row>
 	</ion-grid>
-</ion-content>
+</ion-footer>

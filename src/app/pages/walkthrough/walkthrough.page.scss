@@ -2,11 +2,6 @@ ion-content {
     --padding-end: 24px;
     --padding-start: 24px;
     --overflow: hidden;
-    --background: #FFF;
-}
-  
-ion-footer {
-    background: #FFF;
 }
   
 ion-slide {
@@ -14,11 +9,8 @@ ion-slide {
     flex-direction: column;
 }
   
-ion-img {
-    max-width: 70vw;
-    max-height: 70vh;
-    margin-bottom: 4vh;
-    overflow: hidden;
+img {
+    max-width: 60vw;
 }
 
 .round {

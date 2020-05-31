@@ -1,0 +1,36 @@
+<ion-content class="ion-padding bg-image" scrollX=false>
+  <div class="main-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img [src]="imgMBPJ">
+        </ion-col>
+        <ion-col>
+          <img [src]="imgSmartPJ">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="login-title">
+      <h2>Skim Rebat Cukai Taksiran Rumah Mesra Alam Hijau Petaling Jaya</h2>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-padding ion-no-border" mode="ios">
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+        <p class="copyright">Hak cipta terpelihara Majlis Bandaraya Petaling Jaya</p>
+				<ion-button
+					shape="round"
+					expand="block"
+          (click)="navigatePage('/auth/walkthrough')"
+          mode="ios"
+				>
+					Start
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>

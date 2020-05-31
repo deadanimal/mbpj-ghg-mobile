@@ -13,6 +13,10 @@ import { LoadingController } from '@ionic/angular';
 })
 export class ForgotPage implements OnInit {
 
+  // Image
+  imgMBPJ = 'assets/img/organization/mbpj-logo.png'
+  imgSmartPJ = 'assets/img/organization/smart-pj.png'
+
   // Data
   email: string = ''
 
@@ -27,6 +31,10 @@ export class ForgotPage implements OnInit {
 
   // Loading 
   loadingMessage: HTMLIonLoadingElement
+
+  // Checker
+  isLoading: boolean = false
+
 
   constructor(
     private authService: AuthService,
@@ -45,20 +53,16 @@ export class ForgotPage implements OnInit {
     })
   }
 
-  async reset() {
-    this.loadingMessage = await this.loadingCtrl.create({
-      message: 'Loading...'
-    });
-    await this.loadingMessage.present()
-
+  reset() {
+    this.isLoading = true
     this.authService.resetPassword(this.resetForm.value).subscribe(
       () => {
         // console.log('Reset success')
-        this.loadingMessage.dismiss()
+        this.isLoading = false
       },
       () => {
         // console.log('Reset unsuccessful')
-        this.loadingMessage.dismiss()
+        this.isLoading = false
       },
       () => {
         // console.log('After that')

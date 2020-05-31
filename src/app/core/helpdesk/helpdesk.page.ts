@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpdeskPage implements OnInit {
 
+  // Image
+  imgConstruction = 'assets/img/default/Construction.png';
+  
   constructor() { }
 
   ngOnInit() {

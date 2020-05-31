@@ -1,5 +1,10 @@
-ion-content {
-    --background: #FFF;
+.main-content {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    height: 100vh;
 }
   
 .form {
@@ -27,16 +32,13 @@ ion-content {
   
     ion-item {
         --background: transparent;
+        --inner-padding-end: 0;
         border-radius: 15px;
     }
 }
   
 img {
-    display: block;
-    margin: 0 auto;
-    max-width: 50%;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    max-width: 8rem;
 }
   
 // Avoid keyboard to hide or move elements in the UI
@@ -53,4 +55,8 @@ ion-button {
     font-weight: 600;
     margin-top: 40px;
 }
-  
+
+.copyright {
+    font-size: 0.8rem;
+    color: black;
+}

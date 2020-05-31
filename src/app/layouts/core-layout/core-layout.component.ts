@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Applicant, Evaluator } from '../../shared/menu/menu-list';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { User } from 'src/app/shared/services/users/users.model';
 
 @Component({
   selector: 'app-core-layout',
@@ -12,6 +13,7 @@ export class CoreLayoutComponent implements OnInit {
 
   public selectedIndex = 0;
   public appPages = Applicant
+  user: User
 
   constructor(
     private authService: AuthService
@@ -21,6 +23,9 @@ export class CoreLayoutComponent implements OnInit {
     }
     else if (this.authService.userRole == 2) {
       this.appPages = Evaluator
+    }
+    if (this.authService.userID) {
+      
     }
   }
 

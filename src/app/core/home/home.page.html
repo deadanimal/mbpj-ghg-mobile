@@ -11,36 +11,40 @@
   <ion-grid mode="ios" class="ion-no-margin">
     <ion-row mode="ios" class="ion-no-margin">
       <ion-col mode="ios" class="ion-no-padding">
-        <ion-card mode="ios" class="ion-margin">
-          <ion-card-content>
-            
-          </ion-card-content>
+        <ion-card mode="ios" class="ion-margin" (click)="navigatePage('/core/my-home')">
+          <img [src]="imgMyHome">
+          <ion-card-footer>
+            <h5 class="ion-text-center ion-no-margin ion-padding">MyHome</h5>
+          </ion-card-footer>
         </ion-card>
       </ion-col>
 
       <ion-col mode="ios" class="ion-no-padding">
-        <ion-card mode="ios" class="ion-margin">
-          <ion-card-content>
-            
-          </ion-card-content>
+        <ion-card mode="ios" class="ion-margin" (click)="navigatePage('/core/application/walkthrough')">
+          <img [src]="imgApply">
+          <ion-card-footer>
+            <h5 class="ion-text-center ion-no-margin ion-padding">Apply eRebate</h5>
+          </ion-card-footer>
         </ion-card>
       </ion-col>
     </ion-row>
 
     <ion-row mode="ios" class="ion-no-margin">
       <ion-col mode="ios" class="ion-no-padding">
-        <ion-card mode="ios" class="ion-margin">
-          <ion-card-content>
-            
-          </ion-card-content>
+        <ion-card mode="ios" class="ion-margin" (click)="navigatePage('/core/applications')">
+          <img [src]="imgHistory">
+          <ion-card-footer>
+            <h5 class="ion-text-center ion-no-margin ion-padding">History</h5>
+          </ion-card-footer>
         </ion-card>
       </ion-col>
 
       <ion-col mode="ios" class="ion-no-padding">
-        <ion-card mode="ios" class="ion-margin">
-          <ion-card-content>
-            
-          </ion-card-content>
+        <ion-card mode="ios" class="ion-margin" (click)="navigatePage('/core/notifications')">
+          <img [src]="imgNotification">
+          <ion-card-footer>
+            <h5 class="ion-text-center ion-no-margin ion-padding">Notifications</h5>
+          </ion-card-footer>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -51,7 +55,7 @@
       <h3>Status</h3>
     </ion-list-header>
 
-    <ion-card mode="ios">
+    <ion-card mode="ios" [hidden]="isApplicationEmpty">
       <ion-card-content>
         <ion-item class="ion-no-padding" lines="none">
           <ion-label>
@@ -63,7 +67,9 @@
       </ion-card-content>
     </ion-card>
 
-    <img [src]="iconError" class="error-img">
-    <p class="error-text">No application submitted yet</p>
+    <div [hidden]="!isApplicationEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No application submitted yet</p>
+    </div>
   </ion-list>
 </ion-content>

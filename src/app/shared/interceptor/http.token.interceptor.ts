@@ -33,7 +33,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
                 // this.notificationHandler.openToastrConnection() <--
                 // Handle offline error
             } else {
-                this.notificationHandler.openToastrError(error.statusText)
+                // this.notificationHandler.openToastrError(error.statusText)
                 // this.notificationHandler.openToastrHttp(error.status, error.statusText) <--
                 // Handle Http Error (error.status === 403, 404...)
             }

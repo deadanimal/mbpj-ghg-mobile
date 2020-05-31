@@ -1,9 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>application-apply</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+	<ion-toolbar mode="ios">
+		<ion-buttons slot="start">
+			<ion-back-button 
+				defaultHref="/core/home"
+				routerLink="/core/home"
+				routerDirection="back"
+			>
+			</ion-back-button>
+    </ion-buttons>
+    <ion-title>Apply eRebate</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding" fullscreen>
+	<img [src]="imgConstruction">
+	<p class="ion-text-center construction-text">Page is under construction</p>
 </ion-content>

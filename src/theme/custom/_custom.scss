@@ -3,6 +3,11 @@ ion-content {
     --background: #fbfbfb; // #fbfbfb;404040
 }
 
+// Footer
+ion-footer {
+    background: transparent !important;
+}
+
 // Card
 ion-card.walkthrough-card {
     width: 100vh;

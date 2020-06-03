@@ -18,6 +18,7 @@ export class InformationPage implements OnInit {
 
   // Data
   user: User
+  img: any
 
   // Form
   userForm: FormGroup
@@ -37,9 +38,14 @@ export class InformationPage implements OnInit {
         Validators.required
       ])),
       email: new FormControl('', Validators.compose([
-        Validators.email
       ])),
       nric_old: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      nric_new: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      nric_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
       mobile: new FormControl('', Validators.compose([
@@ -49,17 +55,17 @@ export class InformationPage implements OnInit {
         Validators.required
       ])),
       occupation: new FormControl('', Validators.compose([
+        Validators.required
       ])),
       gender: new FormControl('', Validators.compose([
+        Validators.required
       ]))
     })
   }
 
   getData() {
     this.userService.getCurrentUser(this.authService.userID).subscribe(
-      () => {
-        this.user = this.userService.userCurrent
-      },
+      () => { this.user = this.userService.userCurrent },
       () => {},
       () => {}
     )
@@ -73,7 +79,7 @@ export class InformationPage implements OnInit {
     this.isSaving = !this.isSaving
   }
 
-  async getImage() {
+  async openUploadSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Upload NRIC / passport',
       // cssClass: 'my-custom-class',
@@ -91,7 +97,8 @@ export class InformationPage implements OnInit {
           handler: () => {
             this.openCamera()
           }
-        },{
+        },
+        {
           text: 'Cancel',
           icon: 'close-outline',
           role: 'cancel',

@@ -66,6 +66,7 @@ export class ForgotPage implements OnInit {
       },
       () => {
         // console.log('After that')
+        this.resetForm.reset()
         this.successMessage() 
       }
     )

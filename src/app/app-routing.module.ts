@@ -5,7 +5,7 @@ import { CoreLayoutComponent } from './layouts/core-layout/core-layout.component
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/walkthrough',
+    redirectTo: 'auth/start',
     pathMatch: 'full'
   },
   {

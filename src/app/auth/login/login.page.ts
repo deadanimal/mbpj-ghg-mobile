@@ -19,12 +19,12 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   loginFormMessages = {
     'username': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'NRIC/Passport is required' },
+      { type: 'pattern', message: 'Please enter a valid NRIC/passport' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'At least 6 characters long.' }
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'At least 8 characters long' }
     ]
   };
 
@@ -42,11 +42,11 @@ export class LoginPage implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^[a-zA-Z0-9]*$')
       ])),
       password: new FormControl('', Validators.compose([
-        Validators.minLength(6),
-        Validators.required
+        Validators.required,
+        Validators.minLength(8)
       ])),
     });
   }
@@ -59,7 +59,8 @@ export class LoginPage implements OnInit {
     this.isLoading = true
     console.log(this.loginForm.value)
     this.navigateHomePage()
-    /*this.authService.obtainToken(this.loginForm.value).subscribe(
+    /*
+    this.authService.obtainToken(this.loginForm.value).subscribe(
       () => {
         // Success
         this.isLoading = false
@@ -71,6 +72,7 @@ export class LoginPage implements OnInit {
       () => {
         // After
         this.toastr.openToastr('Welcome back')
+        this.loginForm.reset()
         this.navigateHomePage()
       }
     )

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { NotifyService } from 'src/app/shared/handlers/notify/notify.service';
 
 @Component({
   selector: 'app-register',
@@ -19,16 +19,16 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   registerFormMessages = {
     'username': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: 'NRIC/Passport is required' },
+      { type: 'pattern', message: 'Enter a valid NRIC/passport' }
     ],
     'password1': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'At least 6 characters long.' }
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'At least 8 characters long' }
     ],
     'password2': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'At least 8 characters long' }
     ]
   };
 
@@ -40,22 +40,22 @@ export class RegisterPage implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastr: NotifyService
   ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^[a-zA-Z0-9]*$')
       ])),
       password1: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9 ]*$')
+        Validators.minLength(8)
       ])),
       password2: new FormControl('', Validators.compose([
-        Validators.minLength(6),
-        Validators.required
+        Validators.required,
+        Validators.minLength(8)
       ])),
     });
   }
@@ -73,27 +73,14 @@ export class RegisterPage implements OnInit {
       },
       () => {
         // After
-        // this.showToast('Successfully registered your account')
+        this.registerForm.reset()
+        this.toastr.openToastr('Successfully registered your account')
       }
     )
   }
 
-  navigateHomePage() {
-    this.showToast('Login in to app')
-    this.router.navigate(['/home'])
-  }
-
   navigateLoginPage() {
-    this.router.navigate(['/login'])
-  }
-
-  async showToast(message) {
-    const toast = await this.toastCtrl.create({
-      header: message,
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
+    this.router.navigate(['/auth/login'])
   }
 
 }

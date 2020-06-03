@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { HousesService } from 'src/app/shared/services/houses/houses.service';
 
 @Component({
   selector: 'app-my-home-add',
@@ -9,8 +12,24 @@ export class MyHomeAddPage implements OnInit {
 
   // Image
   imgConstruction = 'assets/img/default/Construction.png';
+
+  // Form
+  houseForm: FormGroup
+
+  //
+  houseTypes = [
+    { value: '', text: '' },
+    { value: '', text: '' },
+    { value: '', text: '' },
+    { value: '', text: '' },
+    { value: '', text: '' }
+  ]
   
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private houseService: HousesService,
+
+  ) { }
 
   ngOnInit() {
   }

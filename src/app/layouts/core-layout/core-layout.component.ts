@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant, Evaluator } from '../../shared/menu/menu-list';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { User } from 'src/app/shared/services/users/users.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-core-layout',
@@ -16,7 +17,8 @@ export class CoreLayoutComponent implements OnInit {
   user: User
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     if (this.authService.userRole == 1) {
       this.appPages = Applicant
@@ -40,6 +42,11 @@ export class CoreLayoutComponent implements OnInit {
 
   selectPage(index: number) {
     this.selectedIndex = index
+  }
+
+  logout() {
+    console.log('Logout')
+    this.router.navigate(['/auth/login'])
   }
 
 }

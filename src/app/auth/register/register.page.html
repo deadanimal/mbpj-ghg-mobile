@@ -1,3 +1,16 @@
+<ion-header mode="ios">
+	<ion-toolbar mode="ios">
+		<ion-buttons slot="start">
+			<ion-back-button 
+				defaultHref="/auth/login"
+				routerLink="/auth/login"
+				routerDirection="back"
+			>
+			</ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding" fullscreen>
 	<div class="main-content">
 		<ion-grid>
@@ -18,7 +31,7 @@
 					<p class="ion-text-center ion-padding-bottom">Please enter your data</p>
 					<ion-item lines="none" class="ion-no-padding ion-no-margin">
 						<ion-label position="stacked">NRIC / Passport</ion-label>
-						<ion-input type="text" formControlName="username" placeholder="900520115069"></ion-input>
+						<ion-input type="text" formControlName="username" placeholder="900520115069 / A123456"></ion-input>
 					</ion-item>
 	
 					<div class="validation-errors">
@@ -71,6 +84,7 @@
 							shape="round"
 							color="primary"
 							mode="ios"
+							(click)="register()"
 						>
 							Register
 						</ion-button>

@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { AppComponent } from './app.component';
 import { CoreLayoutComponent } from './layouts/core-layout/core-layout.component';
@@ -28,6 +29,7 @@ import { HttpTokenInterceptor } from './shared/interceptor/http.token.intercepto
     HttpClientModule
   ],
   providers: [
+    Camera,
     JwtService,
     NativeStorage,
     StatusBar,

@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: () => import('./core/application-detail/application-detail.module').then( m => m.ApplicationDetailPageModule)
   },
   {
+    path: 'application/select-house',
+    loadChildren: () => import('./core/application-house/application-house.module').then( m => m.ApplicationHousePageModule)
+  },
+  {
     path: 'my-home/add',
     loadChildren: () => import('./core/my-home-add/my-home-add.module').then( m => m.MyHomeAddPageModule)
   },
@@ -93,6 +97,10 @@ const routes: Routes = [
   {
     path: 'auth/start',
     loadChildren: () => import('./pages/start/start.module').then( m => m.StartPageModule)
+  },
+  {
+    path: 'application-house',
+    loadChildren: () => import('./core/application-house/application-house.module').then( m => m.ApplicationHousePageModule)
   }
 ];
 

@@ -1,18 +1,58 @@
 <ion-header [translucent]="true" mode="ios" class="ion-no-border">
 	<ion-toolbar mode="ios">
 		<ion-buttons slot="start">
-			<ion-back-button 
+			<ion-back-button
+				text=""
 				defaultHref="/core/home"
 				routerLink="/core/home"
 				routerDirection="back"
 			>
 			</ion-back-button>
     </ion-buttons>
-    <ion-title>Apply eRebate</ion-title>
+	<ion-title>Apply eRebate</ion-title>
+	<ion-button
+		slot="end"
+		color="warning"
+		size="small"
+		mode="ios"
+		fill="outline"
+	>
+		Save as draft
+	</ion-button>
+
 	</ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" fullscreen>
-	<img [src]="imgConstruction">
-	<p class="ion-text-center construction-text">Page is under construction</p>
+	<ion-list class="ion-no-margin list-core" mode="ios">
+		<form>
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of lamp in house</ion-label>
+			<ion-input placeholder="1" mode="ios"></ion-input>
+		  </ion-item>
+		</form>
+	  </ion-list>
 </ion-content>
+
+<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+	<ion-button 
+		*ngIf="!isLoading" 
+		expand="block" 
+		mode="ios" 
+		shape="round" 
+		color="primary" 
+		type="submit"
+		(click)="submit()"
+	>
+		Submit
+	</ion-button>
+	<ion-button 
+		*ngIf="isLoading" 
+		expand="block" 
+		mode="ios"
+		shape="round"
+		color="primary"
+	>
+		<ion-spinner name="bubbles"></ion-spinner>
+	</ion-button>
+</ion-footer>

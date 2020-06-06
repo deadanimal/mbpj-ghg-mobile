@@ -1,18 +1,84 @@
 <ion-header [translucent]="true" mode="ios" class="ion-no-border">
 	<ion-toolbar mode="ios">
 		<ion-buttons slot="start">
-			<ion-back-button 
-				defaultHref="/core/my-home"
-				routerLink="/core/my-home"
-				routerDirection="back"
-			>
+			<ion-back-button defaultHref="/core/my-home" routerLink="/core/my-home" routerDirection="back">
 			</ion-back-button>
-    </ion-buttons>
-    <ion-title>Register new home</ion-title>
+		</ion-buttons>
+		<ion-title>Register new home</ion-title>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" fullscreen>
-	<img [src]="imgConstruction">
-	<p class="ion-text-center construction-text">Page is under construction</p>
+<ion-content fullscreen>
+	<ion-list class="ion-no-margin list-core" mode="ios">
+		<form [formGroup]="houseForm">
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Address</ion-label>
+				<ion-input placeholder="No. 23, Jalan PJU 9/1" mode="ios" formControlName="address"></ion-input>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Postcode</ion-label>
+				<ion-input placeholder="40150" mode="ios" formControlName="postcode" type="number"></ion-input>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Area</ion-label>
+				<ion-select placeholder="Damansara Perdana" mode="ios" formControlName="area">
+					<ion-select-option *ngFor="let area of areaOptions" value="occupant.value">{{area.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Assessment Tax Account No.</ion-label>
+				<ion-input placeholder="T10918210010010" mode="ios" formControlName="assessment_tax_account" type="number">
+				</ion-input>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Staying Since</ion-label>
+				<ion-datetime placeholder="March 2010" mode="ios" formControlName="staying_duration_since" displayFormat="MMMM YYYY">
+				</ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Occupants No.</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="occupants">
+					<ion-select-option *ngFor="let occupant of occupantOptions" value="occupant.value">{{occupant.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Assessment Tax Document</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet()">Upload</ion-button>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-img [src]="imageSelected"></ion-img>
+			</ion-item>
+		</form>
+	</ion-list>
 </ion-content>
+
+<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+	<ion-button 
+		*ngIf="!isLoading" 
+		expand="block" 
+		mode="ios" 
+		shape="round" 
+		color="primary" 
+		[disabled]="!houseForm.valid"
+		type="submit"
+		(click)="submit()"
+	>
+		Register
+	</ion-button>
+	<ion-button 
+		*ngIf="isLoading" 
+		expand="block" 
+		mode="ios"
+		shape="round"
+		color="primary"
+	>
+		<ion-spinner name="bubbles"></ion-spinner>
+	</ion-button>
+</ion-footer>

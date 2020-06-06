@@ -119,6 +119,4 @@ export class InformationPage implements OnInit {
     console.log('Camera opened')
   }
 
-
-
 }

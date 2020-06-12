@@ -58,8 +58,7 @@ export class LoginPage implements OnInit {
   login() {
     this.isLoading = true
     console.log(this.loginForm.value)
-    this.navigateHomePage()
-    /*
+    // this.navigateHomePage()
     this.authService.obtainToken(this.loginForm.value).subscribe(
       () => {
         // Success
@@ -76,7 +75,6 @@ export class LoginPage implements OnInit {
         this.navigateHomePage()
       }
     )
-    */
   }
 
   navigateHomePage() {

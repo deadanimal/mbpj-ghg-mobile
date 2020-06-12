@@ -5,8 +5,12 @@ import { HousesService } from 'src/app/shared/services/houses/houses.service';
 import { ActionSheetController } from '@ionic/angular';
 
 import { Areas } from 'src/assets/data/areas';
+import { Houses } from 'src/assets/data/houses';
 import { Occupants } from 'src/assets/data/occupants';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { NotifyService } from 'src/app/shared/handlers/notify/notify.service';
+import { Base64 } from '@ionic-native/base64/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-home-add',
@@ -22,22 +26,24 @@ export class MyHomeAddPage implements OnInit {
   houseForm: FormGroup
 
   // Type
-  houseTypes = [
-    { value: '', text: '' },
-    { value: '', text: '' },
-    { value: '', text: '' },
-    { value: '', text: '' },
-    { value: '', text: '' }
+  houseOptions = [
+    { value: 'CD', text: 'Condominium' },
+    { value: 'FL', text: 'Flat' },
+    { value: 'TO', text: 'Townhouse' },
+    { value: 'TE', text: 'Terrace House' },
+    { value: 'BS', text: 'Bungalow / Semidetached' },
+    { value: 'AS', text: 'Apartment / Service Apartment' }
   ]
-
   areaOptions = Areas
   occupantOptions = Occupants
+  // houseOptions = Houses
 
   // Checker
   isLoading: boolean = false
 
   // Data
   imageSelected: string
+  imageSelectedPreview: string
 
   
   constructor(
@@ -45,11 +51,17 @@ export class MyHomeAddPage implements OnInit {
     private houseService: HousesService,
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: NotifyService,
+    private base64: Base64,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.houseForm = this.fb.group({
+      owner: new FormControl('', Validators.compose([
+        // Validators.required
+      ])),
       address: new FormControl('', Validators.compose([
         Validators.required
       ])),
@@ -78,10 +90,29 @@ export class MyHomeAddPage implements OnInit {
         Validators.required
       ]))
     })
+    this.houseForm.controls['owner'].setValue(this.authService.userID)
   }
 
   submit() {
+    this.isLoading = true
+    this.houseService.create(this.houseForm.value).subscribe(
+      () => {
+        // Success
+        this.isLoading = false
+      },
+      () => {
+        // Failed
+        this.isLoading = false
+      },
+      () => {
+        // After
+        this.houseForm.reset()
+        this.toastr.openToastr('Home successfully registered')
+        this.navigatePage('/core/home')
+      }
+    )
 
+    console.log(this.houseForm.value)
   }
 
   async openUploadSheet() {
@@ -91,7 +122,7 @@ export class MyHomeAddPage implements OnInit {
       buttons: [
         {
           text: 'Gallery',
-          icon: 'Selecteds-outline',
+          icon: 'images-outline',
           handler: () => {
             this.openGallery()
           }
@@ -124,7 +155,8 @@ export class MyHomeAddPage implements OnInit {
       quality: 60,
       targetWidth: 1000,
       targetHeight: 1000,
-      encodingType: this.camera.EncodingType.JPEG,      
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,   
       correctOrientation: true
     }
   
@@ -132,6 +164,10 @@ export class MyHomeAddPage implements OnInit {
       .then(
         (file_uri) => {
           this.imageSelected = file_uri
+          // this.encodeImage()
+          this.imageSelectedPreview = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected);
+          // this.imageSelectedPreview = 'data:image/jpeg;base64,' + this.imageSelected
+          this.houseForm.controls['assessment_tax_doc'].setValue(this.imageSelectedPreview)
         },
         (err) => {
           console.log(err
@@ -150,10 +186,25 @@ export class MyHomeAddPage implements OnInit {
 
     this.camera.getPicture(options).then((imageData) => {
       this.imageSelected = imageData;
-      //this.tempImage[billNumber] = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+      this.imageSelectedPreview = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected);
+      this.houseForm.controls['assessment_tax_doc'].setValue(this.imageSelectedPreview)
     }, (err) => {
       alert("error " + JSON.stringify(err))
     })
   }
+
+  navigatePage(path: string) {
+    this.router.navigate([path])
+  }
+
+  // encodeImage() {
+  //   console.log('Start encode')
+  //   this.base64.encodeFile(this.imageSelected).then(
+  //     (encodedFile: string) => {
+  //       this.imageSelectedPreview = encodedFile
+  //       console.log(this.imageSelectedPreview)
+  //     }
+  //   )
+  // }
 
 }

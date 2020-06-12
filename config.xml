@@ -100,8 +100,11 @@
         <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
         <preference name="WKWebViewOnly" value="true" />
         <preference name="target-device" value="handset" />
+        <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+            <string>This app needs access to your Photo Library for uploading files</string>
+        </config-file>
         <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
-            <string>You can take photos</string>
+            <string>This app needs access to your Camera to allow you to take and upload a picture</string>
         </config-file>
     </platform>
     <plugin name="cordova-plugin-nativestorage" spec="~2.3.2" />

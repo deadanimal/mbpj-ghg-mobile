@@ -49,9 +49,9 @@ export class HousesService {
     )
   }
 
-  update(id: string) {
+  update(id: string, body: Form) {
     let urlTemp = this.urlHouse + id + '/'
-    return this.http.get<House>(urlTemp).pipe(
+    return this.http.patch<House>(urlTemp, body).pipe(
       tap((res: House) => {
         this.house = res
         console.log('House: ', this.house)

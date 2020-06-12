@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://127.0.0.1:8000/"
+  baseUrl: "https://mbpj-ghg-api.pipe.my/"
 };
 
 /*
@@ -15,3 +15,5 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+// baseUrl: "http://127.0.0.1:8000/"

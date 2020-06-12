@@ -15,6 +15,7 @@ import { AuthService } from './shared/services/auth/auth.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpTokenInterceptor } from './shared/interceptor/http.token.interceptor';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpTokenInterceptor } from './shared/interceptor/http.token.intercepto
     HttpClientModule
   ],
   providers: [
+    Base64,
     Camera,
     JwtService,
     NativeStorage,

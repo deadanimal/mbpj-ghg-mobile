@@ -6,35 +6,100 @@
 				defaultHref="/core/home"
 				routerLink="/core/home"
 				routerDirection="back"
+				text=""
 			>
 			</ion-back-button>
     </ion-buttons>
 	<ion-title>Apply eRebate</ion-title>
-	<ion-button
+	<!-- <ion-button
 		slot="end"
 		color="warning"
 		size="small"
 		mode="ios"
 		fill="outline"
+		(click)="draft()"
 	>
 		Save as draft
-	</ion-button>
+	</ion-button> -->
 
 	</ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" fullscreen>
+<ion-content>
 	<ion-list class="ion-no-margin list-core" mode="ios">
-		<form>
+		<form [formGroup]="applicationForm">
 		  <ion-item class="item-form" lines="none">
 			<ion-label position="stacked" mode="ios">No. of lamp in house</ion-label>
+			<ion-input placeholder="1" mode="ios"></ion-input>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of LED lamp in house</ion-label>
+			<ion-input placeholder="1" mode="ios"></ion-input>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of car(s)</ion-label>
+			<ion-select placeholder="1" mode="ios">
+				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+			</ion-select>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of motorcycle(s)</ion-label>
+			<ion-select placeholder="1" mode="ios">
+				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+			</ion-select>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of bicycle(s)</ion-label>
+			<ion-select placeholder="1" mode="ios">
+				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+			</ion-select>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">No. of other vehicle(s)</ion-label>
+			<ion-select placeholder="1" mode="ios">
+				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+			</ion-select>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill month #1</ion-label>
+			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill usage #1</ion-label>
+			<ion-input placeholder="1" mode="ios"></ion-input>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill month #2</ion-label>
+			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill usage #2</ion-label>
+			<ion-input placeholder="1" mode="ios"></ion-input>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill month #3</ion-label>
+			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
+		  </ion-item>
+
+		  <ion-item class="item-form" lines="none">
+			<ion-label position="stacked" mode="ios">Electricity bill usage #3</ion-label>
 			<ion-input placeholder="1" mode="ios"></ion-input>
 		  </ion-item>
 		</form>
 	  </ion-list>
 </ion-content>
 
-<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+<ion-footer class="ion-no-border ion-padding" mode="ios">
 	<ion-button 
 		*ngIf="!isLoading" 
 		expand="block" 

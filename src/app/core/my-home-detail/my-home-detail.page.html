@@ -1,9 +1,114 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>my-home-detail</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+	<ion-toolbar mode="ios">
+		<ion-buttons slot="start">
+			<ion-back-button 
+				defaultHref="/core/my-home"
+				routerLink="/core/my-home"
+				routerDirection="back"
+				text=""
+			>
+			</ion-back-button>
+		</ion-buttons>
+		<ion-title>Home detail</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-list class="ion-no-margin list-core" mode="ios">
+		<form [formGroup]="houseForm">
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Address</ion-label>
+        <ion-textarea 
+          placeholder="No. 23, Jalan PJU 9/1"
+          mode="ios"
+          formControlName="address"
+          [value]="house.address"
+        >
+        </ion-textarea>
+			</ion-item>
 
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Postcode</ion-label>
+        <ion-input
+          placeholder="40150"
+          mode="ios"
+          formControlName="postcode"
+          type="number"
+          value]="house.postcode"
+        >
+        </ion-input>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Area</ion-label>
+				<ion-select placeholder="Damansara Perdana" mode="ios" formControlName="area" [value]="house.area">
+					<ion-select-option *ngFor="let area of areaOptions" value="occupant.value">{{area.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Assessment Tax Account No.</ion-label>
+        <ion-input
+          placeholder="T10918210010010"
+          mode="ios"
+          formControlName="assessment_tax_account"
+          type="number"
+          [value]="house.assessment_tax_account"
+        >
+				</ion-input>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Staying Since</ion-label>
+        <ion-datetime
+          placeholder="March 2010"
+          mode="ios"
+          formControlName="staying_duration_since"
+          displayFormat="MMMM YYYY"
+          [value]="house.staying_duration_since"
+        >
+				</ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Occupants No.</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="occupants" [value]="house.occupants">
+					<ion-select-option *ngFor="let occupant of occupantOptions" value="occupant.value">{{occupant.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Assessment Tax Document</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet()">Upload</ion-button>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none" *ngIf="!imageSelected && !house.assessment_tax_doc">
+				<ion-img [src]="imageSelected"></ion-img>
+			</ion-item>
+		</form>
+	</ion-list>
 </ion-content>
+
+<ion-footer class="ion-no-border ion-padding" mode="ios">
+	<ion-button 
+		*ngIf="!isLoading" 
+		expand="block" 
+		mode="ios" 
+		shape="round" 
+		color="primary" 
+		[disabled]="!houseForm.valid"
+		type="submit"
+		(click)="update()"
+	>
+		Update
+	</ion-button>
+	<ion-button 
+		*ngIf="isLoading" 
+		expand="block" 
+		mode="ios"
+		shape="round"
+		color="primary"
+	>
+		<ion-spinner name="bubbles"></ion-spinner>
+	</ion-button>
+</ion-footer>

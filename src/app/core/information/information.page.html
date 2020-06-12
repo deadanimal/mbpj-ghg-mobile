@@ -4,7 +4,8 @@
 			<ion-back-button 
 				defaultHref="/core/profile"
 				routerLink="/core/profile"
-				routerDirection="back"
+        routerDirection="back"
+        text=""
 			>
 			</ion-back-button>
     </ion-buttons>
@@ -12,7 +13,7 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content>
   <ion-list *ngIf="!isEdit" class="ion-no-margin list-core" mode="ios">
     <ion-item class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Full Name</ion-label>
@@ -105,10 +106,41 @@
         <ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet()">Upload</ion-button>
       </ion-item>
     </form>
+    <ion-item class="item-form" lines="none" *ngIf="imageSelectedPreview">
+      <ion-img [src]="imageSelectedPreview"></ion-img>
+    </ion-item>
   </ion-list>
 </ion-content>
 
-<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
-  <ion-button *ngIf="!isEdit" expand="block" mode="ios" shape="round" color="secondary" (click)="edit()">Edit</ion-button>
-  <ion-button *ngIf="isEdit" expand="block" mode="ios" shape="round" color="primary" (click)="edit()">Save</ion-button>
+<ion-footer class="ion-no-border ion-padding" mode="ios">
+  <ion-button 
+    *ngIf="!isEdit"
+    expand="block"
+    mode="ios"
+    shape="round"
+    color="secondary"
+    (click)="edit()"
+  >
+    Edit
+  </ion-button>
+  <ion-button 
+    *ngIf="isEdit && !isSaving"
+    expand="block"
+    mode="ios"
+    shape="round"
+    color="primary"
+    (click)="edit()"
+  >
+    Save
+  </ion-button>
+  <ion-button 
+    *ngIf="isEdit && isSaving"
+    expand="block"
+    mode="ios"
+    shape="round"
+    color="primary"
+    disabled
+  >
+    <ion-spinner name="bubbles"></ion-spinner>
+  </ion-button>
 </ion-footer>

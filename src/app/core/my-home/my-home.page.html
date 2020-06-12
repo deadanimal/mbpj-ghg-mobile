@@ -14,7 +14,18 @@
       <h3>Registered Homes</h3>
     </ion-list-header>
 
-    <ion-card mode="ios" [hidden]="isMyHomesEmpty">
+    <ion-card mode="ios">
+      <ion-card-content class="ion-no-padding ion-padding-start ion-padding-end">
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-label>
+            <h2>214124</h2>
+            <p>Submitted on 12 March 2020</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-card mode="ios" [hidden]="isMyHomesEmpty">
       <ion-card-content class="ion-no-padding ion-padding-start ion-padding-end">
         <ion-item class="ion-no-padding" lines="none">
           <ion-label>
@@ -29,7 +40,7 @@
     <div [hidden]="!isMyHomesEmpty">
       <img [src]="iconError" class="error-img">
       <p class="error-text">No home registered yet, please register using the button below</p>
-    </div>
+    </div> -->
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addHome('/my-home/add/')">

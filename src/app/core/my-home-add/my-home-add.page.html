@@ -1,19 +1,24 @@
 <ion-header [translucent]="true" mode="ios" class="ion-no-border">
 	<ion-toolbar mode="ios">
 		<ion-buttons slot="start">
-			<ion-back-button defaultHref="/core/my-home" routerLink="/core/my-home" routerDirection="back">
+			<ion-back-button 
+				defaultHref="/core/my-home"
+				routerLink="/core/my-home"
+				routerDirection="back"
+				text=""
+			>
 			</ion-back-button>
 		</ion-buttons>
 		<ion-title>Register new home</ion-title>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content>
 	<ion-list class="ion-no-margin list-core" mode="ios">
 		<form [formGroup]="houseForm">
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Address</ion-label>
-				<ion-input placeholder="No. 23, Jalan PJU 9/1" mode="ios" formControlName="address"></ion-input>
+				<ion-textarea placeholder="No. 23, Jalan PJU 9/1" mode="ios" formControlName="address"></ion-textarea>
 			</ion-item>
 
 			<ion-item class="item-form" lines="none">
@@ -24,7 +29,14 @@
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Area</ion-label>
 				<ion-select placeholder="Damansara Perdana" mode="ios" formControlName="area">
-					<ion-select-option *ngFor="let area of areaOptions" value="occupant.value">{{area.value}}</ion-select-option>
+					<ion-select-option *ngFor="let area of areaOptions" value="{{area.value}}">{{area.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Building Type</ion-label>
+				<ion-select placeholder="Condominium" mode="ios" formControlName="building_type">
+					<ion-select-option *ngFor="let house of houseOptions" value="{{house.value}}">{{house.text}}</ion-select-option>
 				</ion-select>
 			</ion-item>
 
@@ -41,9 +53,9 @@
 			</ion-item>
 
 			<ion-item class="item-form" lines="none">
-				<ion-label position="stacked" mode="ios">Occupants No.</ion-label>
+				<ion-label position="stacked" mode="ios">No. of Occupants</ion-label>
 				<ion-select placeholder="1" mode="ios" formControlName="occupants">
-					<ion-select-option *ngFor="let occupant of occupantOptions" value="occupant.value">{{occupant.value}}</ion-select-option>
+					<ion-select-option *ngFor="let occupant of occupantOptions" value="{{occupant.value}}">{{occupant.value}}</ion-select-option>
 				</ion-select>
 			</ion-item>
 
@@ -52,14 +64,14 @@
 				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet()">Upload</ion-button>
 			</ion-item>
 
-			<ion-item class="item-form" lines="none">
-				<ion-img [src]="imageSelected"></ion-img>
+			<ion-item class="item-form" lines="none" *ngIf="imageSelectedPreview">
+				<ion-img [src]="imageSelectedPreview"></ion-img>
 			</ion-item>
 		</form>
 	</ion-list>
 </ion-content>
 
-<ion-footer class="ion-no-border ion-padding-start ion-padding-end" mode="ios">
+<ion-footer class="ion-no-border ion-padding" mode="ios">
 	<ion-button 
 		*ngIf="!isLoading" 
 		expand="block" 

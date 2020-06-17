@@ -17,42 +17,50 @@
   <ion-list *ngIf="!isEdit" class="ion-no-margin list-core" mode="ios">
     <ion-item class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Full Name</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="user" value="{{user.full_name}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">New NRIC</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="user" value="{{user.nric_new}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Old NRIC</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="user" value="{{user.nric_old}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
+    </ion-item>
+
+    <ion-item  class="item-form" lines="none">
+      <ion-label position="stacked" mode="ios">Email</ion-label>
+      <ion-input *ngIf="user" value="{{user.email}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Mobile</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="user" value="{{user.nric_old}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Phone</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="user" value="{{user.nric_old}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Occupation</ion-label>
-      <ion-input value="" disabled mode="ios"></ion-input>
-    </ion-item>
-    
-    <ion-item class="item-form" lines="none">
-      <ion-label position="stacked" mode="ios">User Type</ion-label>
-      <ion-select value="" disabled mode="ios"></ion-select>
+      <ion-input *ngIf="user" value="{{user.nric_old}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
 
     <ion-item  class="item-form" lines="none">
       <ion-label position="stacked" mode="ios">Gender</ion-label>
-      <ion-select value="" disabled mode="ios"></ion-select>
+      <ion-input *ngIf="user" value="{{user.nric_old}}" disabled mode="ios"></ion-input>
+      <ion-input *ngIf="!user" value="" disabled mode="ios"></ion-input>
     </ion-item>
   </ion-list>
 
@@ -60,38 +68,42 @@
     <form [formGroup]="userForm">
       <ion-item class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Full Name</ion-label>
-        <ion-input value="Eric Leong" mode="ios" formControlName="full_name"></ion-input>
+        <ion-input mode="ios" formControlName="full_name" type="text"></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">New NRIC / Passport</ion-label>
-        <ion-input value="" mode="ios" disabled></ion-input>
+        <ion-input value="{{user.nric_new}}" mode="ios" disabled></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Old NRIC</ion-label>
-        <ion-input placeholder="A271281" mode="ios" formControlName="nric_old" type="number"></ion-input>
+        <ion-input placeholder="A271281" mode="ios" formControlName="nric_old" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item  class="item-form" lines="none">
+        <ion-label position="stacked" mode="ios">Email</ion-label>
+        <ion-input placeholder="ali@gmail.com" mode="ios" formControlName="email" type="email"></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Mobile</ion-label>
-        <ion-input placeholder="0129121231" value="" mode="ios" formControlName="mobile" type="number"></ion-input>
+        <ion-input placeholder="0129121231" mode="ios" formControlName="mobile" type="number"></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Phone</ion-label>
-        <ion-input placeholder="0371273173" value="" mode="ios" formControlName="phone" type="number"></ion-input>
+        <ion-input placeholder="0371273173" mode="ios" formControlName="phone" type="number"></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Occupation</ion-label>
-        <ion-input placeholder="Teacher" mode="ios"formControlName="occupation"></ion-input>
+        <ion-input placeholder="Teacher" mode="ios" formControlName="occupation" type="text"></ion-input>
       </ion-item>
   
       <ion-item  class="item-form" lines="none">
         <ion-label position="stacked" mode="ios">Gender</ion-label>
         <ion-select 
-          value=""
           mode="ios"
           formControlName="gender"
           placeholder="Male"
@@ -129,6 +141,7 @@
     mode="ios"
     shape="round"
     color="primary"
+    [disabled]="!userForm.valid"
     (click)="edit()"
   >
     Save

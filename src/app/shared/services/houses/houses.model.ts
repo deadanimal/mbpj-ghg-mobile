@@ -1,5 +1,6 @@
 export class House {
     public id: string
+    public owner: string
     public location: string
     public address: string
     public postcode: string
@@ -15,6 +16,7 @@ export class House {
     
     constructor(
         id: string,
+        owner: string,
         location: string,
         address: string,
         postcode: string,
@@ -29,6 +31,7 @@ export class House {
         modified_date: string
     ) {
         this.id = id
+        this.owner = owner
         this.location = location
         this.address = address
         this.postcode = postcode

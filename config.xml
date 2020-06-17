@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="my.com.pipeline.mbpj.ghg" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="my.com.pipeline.mbpj.ghg" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>eRebat</name>
     <description>MBPJ Skim Rebat Cukai Taksiran Rumah Mesra Alam Hijau</description>
     <author email="engineering@pipeline.com.my" href="http://pipeline.com.my/">Pipeline Network Sdn. Bhd.</author>
@@ -100,11 +100,14 @@
         <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
         <preference name="WKWebViewOnly" value="true" />
         <preference name="target-device" value="handset" />
-        <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
-            <string>This app needs access to your Photo Library for uploading files</string>
+        <config-file parent="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+            <string>eRebat needs access to your camera roll so that you can upload images related to your rebate application. Your images will not be shared without your permission</string>
         </config-file>
-        <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
-            <string>This app needs access to your Camera to allow you to take and upload a picture</string>
+        <config-file parent="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+            <string>eRebat needs access to your camera roll so that you can upload images related to your rebate application. Your images will not be shared without your permission</string>
+        </config-file>
+        <config-file parent="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+            <string>eRebat needs access to your camera to allow you to take and upload images related to your rebate application. Your images will not be shared without your permission</string>
         </config-file>
     </platform>
     <plugin name="cordova-plugin-nativestorage" spec="~2.3.2" />

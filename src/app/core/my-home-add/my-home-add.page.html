@@ -18,7 +18,7 @@
 		<form [formGroup]="houseForm">
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Address</ion-label>
-				<ion-textarea placeholder="No. 23, Jalan PJU 9/1" mode="ios" formControlName="address"></ion-textarea>
+				<ion-textarea placeholder="No. 23, Jalan PJU 9/1" mode="ios" formControlName="address" type="text"></ion-textarea>
 			</ion-item>
 
 			<ion-item class="item-form" lines="none">
@@ -78,7 +78,7 @@
 		mode="ios" 
 		shape="round" 
 		color="primary" 
-		[disabled]="!houseForm.valid"
+		
 		type="submit"
 		(click)="submit()"
 	>

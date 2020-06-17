@@ -19,6 +19,7 @@ export class InformationPage implements OnInit {
 
   // Data
   user: User
+  userTemp: User
   img: any
   imageSelected: string
   imageSelectedPreview: string
@@ -38,41 +39,41 @@ export class InformationPage implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      full_name: new FormControl('', Validators.compose([
+      full_name: new FormControl(this.user.full_name, Validators.compose([
         Validators.required
       ])),
-      email: new FormControl('', Validators.compose([
-      ])),
-      nric_old: new FormControl('', Validators.compose([
+      email: new FormControl(this.user.email),
+      nric_old: new FormControl(this.user.nric_old),
+      nric_new: new FormControl(this.user.nric_new, Validators.compose([
         Validators.required
       ])),
-      nric_new: new FormControl('', Validators.compose([
+      nric_doc: new FormControl(this.user.nric_doc, Validators.compose([
         Validators.required
       ])),
-      nric_doc: new FormControl('', Validators.compose([
+      mobile: new FormControl(this.user.mobile, Validators.compose([
         Validators.required
       ])),
-      mobile: new FormControl('', Validators.compose([
+      phone: new FormControl(this.user.phone, Validators.compose([
         Validators.required
       ])),
-      phone: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      occupation: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      gender: new FormControl('', Validators.compose([
-        Validators.required
-      ]))
+      occupation: new FormControl(this.user.occupation),
+      gender: new FormControl(this.user.gender)
     })
   }
 
   getData() {
-    this.userService.getCurrentUser(this.authService.userID).subscribe(
-      () => { this.user = this.userService.userCurrent },
-      () => {},
-      () => {}
-    )
+    this.user = this.userService.userCurrent
+    this.userTemp = this.userService.userCurrent
+
+    if (this.userTemp.gender == 'ML') {
+      this.userTemp.gender = 'Male'
+    }
+    else if (this.userTemp.gender == 'FM') {
+      this.userTemp.gender = 'Female'
+    }
+    else if (this.userTemp.gender == 'NA') {
+      this.userTemp.gender = 'Not Available'
+    }
   }
 
   edit() {
@@ -169,8 +170,8 @@ export class InformationPage implements OnInit {
       .then(
         (file_uri) => {
           this.imageSelected = file_uri
-          // this.encodeImage()
           this.imageSelectedPreview = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected);
+          this.userForm.controls['nric_doc'].setValue(this.imageSelected)
           // this.imageSelectedPreview = 'data:image/jpeg;base64,' + this.imageSelected
           // this.houseForm.controls['assessment_tax_doc'].setValue(this.imageSelectedPreview)
         },
@@ -192,7 +193,7 @@ export class InformationPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       this.imageSelected = imageData;
       this.imageSelectedPreview = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected);
-      // this.houseForm.controls['assessment_tax_doc'].setValue(this.imageSelectedPreview)
+      this.userForm.controls['nric_doc'].setValue(this.imageSelected)
     }, (err) => {
       alert("error " + JSON.stringify(err))
     })

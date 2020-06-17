@@ -12,6 +12,8 @@ import { NotifyService } from 'src/app/shared/handlers/notify/notify.service';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { Router } from '@angular/router';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-my-home-add',
   templateUrl: './my-home-add.page.html',
@@ -55,12 +57,13 @@ export class MyHomeAddPage implements OnInit {
     private toastr: NotifyService,
     private base64: Base64,
     private router: Router
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this.houseForm = this.fb.group({
-      owner: new FormControl('', Validators.compose([
-        // Validators.required
+      owner: new FormControl(this.authService.userID, Validators.compose([
+        Validators.required
       ])),
       address: new FormControl('', Validators.compose([
         Validators.required
@@ -71,30 +74,33 @@ export class MyHomeAddPage implements OnInit {
       area: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      building_type: new FormControl('', Validators.compose([
+      building_type: new FormControl('OT', Validators.compose([
         Validators.required
       ])),
       assessment_tax_account: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      assessment_tax_doc: new FormControl('', Validators.compose([
+      assessment_tax_doc: new FormControl(Validators.compose([
         Validators.required
       ])),
       staying_duration_since: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      occupants: new FormControl('', Validators.compose([
+      occupants: new FormControl(1, Validators.compose([
         Validators.required
       ])),
-      active: new FormControl('True', Validators.compose([
+      active: new FormControl(true, Validators.compose([
         Validators.required
       ]))
     })
-    this.houseForm.controls['owner'].setValue(this.authService.userID)
+    // this.houseForm.controls['owner'].setValue(this.authService.userID)
   }
 
   submit() {
+    let staying_since = moment(this.houseForm.value.staying_duration_since).format('YYYY-MM-DDTHH:mm:ss.SSSSZ')
+    this.houseForm.controls['staying_duration_since'].setValue(staying_since)
     this.isLoading = true
+
     this.houseService.create(this.houseForm.value).subscribe(
       () => {
         // Success
@@ -112,7 +118,7 @@ export class MyHomeAddPage implements OnInit {
       }
     )
 
-    console.log(this.houseForm.value)
+    // console.log(this.houseForm.value)
   }
 
   async openUploadSheet() {
@@ -205,6 +211,13 @@ export class MyHomeAddPage implements OnInit {
   //       console.log(this.imageSelectedPreview)
   //     }
   //   )
+  // }
+
+  // calculateMonths() {
+  //   let dateEnd = moment(this.houseForm.value.staying_duration_since)
+  //   let dateStart = moment()
+  //   let dateDuration = Math.round(moment.duration(dateStart.diff(dateEnd)).asMonths())
+  //   console.log(moment(this.houseForm.value.staying_duration_since).format('YYYY-MM-DDTHH:mm:ss.SSSSZ'))
   // }
 
 }

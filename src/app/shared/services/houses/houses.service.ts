@@ -60,7 +60,7 @@ export class HousesService {
   }
 
   filter(field: string) {
-    let urlTemp = this.urlHouse + '?' + field + '/'
+    let urlTemp = this.urlHouse + '?' + field
     return this.http.get<House[]>(urlTemp).pipe(
       tap((res: House[]) => {
         this.housesFiltered = res

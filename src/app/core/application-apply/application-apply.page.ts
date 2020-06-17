@@ -26,7 +26,18 @@ export class ApplicationApplyPage implements OnInit {
   isLoading: boolean = false
 
   // Data
-  imageSelected: string
+  imageSelected1: string
+  imageSelected2: string
+  imageSelected3: string
+  imageSelected4: string
+  imageSelected5: string
+  imageSelected6: string
+  imageSelectedPreview1: string
+  imageSelectedPreview2: string
+  imageSelectedPreview3: string
+  imageSelectedPreview4: string
+  imageSelectedPreview5: string
+  imageSelectedPreview6: string
 
   // Type
   vehicleOptions = Vehicles
@@ -64,61 +75,61 @@ export class ApplicationApplyPage implements OnInit {
       vehicle_bicycle: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      vehicle_other: new FormControl('True', Validators.compose([
+      vehicle_other: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_1_month: new FormControl('True', Validators.compose([
+      electricity_bill_1_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_1_usage: new FormControl('True', Validators.compose([
+      electricity_bill_1_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_1_doc: new FormControl('True', Validators.compose([
+      electricity_bill_1_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_2_month: new FormControl('True', Validators.compose([
+      electricity_bill_2_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_2_usage: new FormControl('True', Validators.compose([
+      electricity_bill_2_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_2_doc: new FormControl('True', Validators.compose([
+      electricity_bill_2_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_3_month: new FormControl('True', Validators.compose([
+      electricity_bill_3_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_3_usage: new FormControl('True', Validators.compose([
+      electricity_bill_3_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      electricity_bill_3_doc: new FormControl('True', Validators.compose([
+      electricity_bill_3_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_1_month: new FormControl('True', Validators.compose([
+      water_bill_1_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_1_usage: new FormControl('True', Validators.compose([
+      water_bill_1_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_1_doc: new FormControl('True', Validators.compose([
+      water_bill_1_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_2_month: new FormControl('True', Validators.compose([
+      water_bill_2_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_2_usage: new FormControl('True', Validators.compose([
+      water_bill_2_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_2_doc: new FormControl('True', Validators.compose([
+      water_bill_2_doc: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_3_month: new FormControl('True', Validators.compose([
+      water_bill_3_month: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_3_usage: new FormControl('True', Validators.compose([
+      water_bill_3_usage: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      water_bill_3_doc: new FormControl('True', Validators.compose([
+      water_bill_3_doc: new FormControl('', Validators.compose([
         Validators.required
       ]))
     })
@@ -144,7 +155,7 @@ export class ApplicationApplyPage implements OnInit {
 
   }
 
-  async openUploadSheet() {
+  async openUploadSheet(index: number) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: '',
       // cssClass: 'my-custom-class',
@@ -153,14 +164,14 @@ export class ApplicationApplyPage implements OnInit {
           text: 'Gallery',
           icon: 'Selecteds-outline',
           handler: () => {
-            this.openGallery()
+            this.openGallery(index)
           }
         },
         {
           text: 'Camera',
           icon: 'camera-outline',
           handler: () => {
-            this.openCamera()
+            this.openCamera(index)
           }
         },
         {
@@ -176,7 +187,7 @@ export class ApplicationApplyPage implements OnInit {
     await actionSheet.present();
   }
 
-  openGallery() {
+  openGallery(index: number) {
     // console.log('Gallery opened')
     let cameraOptions = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -191,7 +202,42 @@ export class ApplicationApplyPage implements OnInit {
     this.camera.getPicture(cameraOptions)
       .then(
         (file_uri) => {
-          this.imageSelected = file_uri
+          if (index == 1) {
+            // Electricity bill 1
+            this.imageSelected1 = file_uri
+            this.imageSelectedPreview1 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected1)
+            this.applicationForm.controls['electricity_bill_1_doc'].setValue(this.imageSelected1)
+          }
+          else if (index == 2) {
+            // Electricity bill 2
+            this.imageSelected2 = file_uri
+            this.imageSelectedPreview2 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected2)
+            this.applicationForm.controls['electricity_bill_2_doc'].setValue(this.imageSelected2)
+          }
+          else if (index == 3) {
+            // Electricity bill 3
+            this.imageSelected3 = file_uri
+            this.imageSelectedPreview3 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected3)
+            this.applicationForm.controls['electricity_bill_3_doc'].setValue(this.imageSelected3)
+          }
+          else if (index == 4) {
+            // Water bill 1
+            this.imageSelected4 = file_uri
+            this.imageSelectedPreview4 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected4)
+            this.applicationForm.controls['water_bill_1_doc'].setValue(this.imageSelected4)
+          }
+          else if (index == 5) {
+            // Water bill 2
+            this.imageSelected5 = file_uri
+            this.imageSelectedPreview5 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected5)
+            this.applicationForm.controls['water_bill_2_doc'].setValue(this.imageSelected5)
+          }
+          else if (index == 6) {
+            // Water bill 3
+            this.imageSelected6 = file_uri
+            this.imageSelectedPreview6 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected6)
+            this.applicationForm.controls['water_bill_3_doc'].setValue(this.imageSelected6)
+          }
         },
         (err) => {
           console.log(err
@@ -199,7 +245,7 @@ export class ApplicationApplyPage implements OnInit {
       );
   }
 
-  openCamera() {
+  openCamera(index: number) {
     // console.log('Camera opened')
     const options: CameraOptions = {
       quality: 60,
@@ -209,8 +255,42 @@ export class ApplicationApplyPage implements OnInit {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.imageSelected = imageData;
-      //this.tempImage[billNumber] = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+      if (index == 1) {
+        // Electricity bill 1
+        this.imageSelected1 = imageData
+        this.imageSelectedPreview1 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected1)
+        this.applicationForm.controls['electricity_bill_1_doc'].setValue(this.imageSelected1)
+      }
+      else if (index == 2) {
+        // Electricity bill 2
+        this.imageSelected2 = imageData
+        this.imageSelectedPreview2 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected2)
+        this.applicationForm.controls['electricity_bill_2_doc'].setValue(this.imageSelected2)
+      }
+      else if (index == 3) {
+        // Electricity bill 3
+        this.imageSelected3 = imageData
+        this.imageSelectedPreview3 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected3)
+        this.applicationForm.controls['electricity_bill_3_doc'].setValue(this.imageSelected3)
+      }
+      else if (index == 4) {
+        // Water bill 1
+        this.imageSelected4 = imageData
+        this.imageSelectedPreview4 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected4)
+        this.applicationForm.controls['water_bill_1_doc'].setValue(this.imageSelected4)
+      }
+      else if (index == 5) {
+        // Water bill 2
+        this.imageSelected5 = imageData
+        this.imageSelectedPreview5 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected5)
+        this.applicationForm.controls['water_bill_2_doc'].setValue(this.imageSelected5)
+      }
+      else if (index == 6) {
+        // Water bill 3
+        this.imageSelected6 = imageData
+        this.imageSelectedPreview6 = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected6)
+        this.applicationForm.controls['water_bill_3_doc'].setValue(this.imageSelected6)
+      }
     }, (err) => {
       alert("error " + JSON.stringify(err))
     })
@@ -219,5 +299,7 @@ export class ApplicationApplyPage implements OnInit {
   navigatePage(path: string) {
     this.router.navigate([path])
   }
+
+
 
 }

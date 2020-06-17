@@ -28,75 +28,141 @@
 <ion-content>
 	<ion-list class="ion-no-margin list-core" mode="ios">
 		<form [formGroup]="applicationForm">
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of lamp in house</ion-label>
-			<ion-input placeholder="1" mode="ios"></ion-input>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of lamp in house</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="total_lamp"></ion-input>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of LED lamp in house</ion-label>
-			<ion-input placeholder="1" mode="ios"></ion-input>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of LED lamp in house</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="total_led"></ion-input>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of car(s)</ion-label>
-			<ion-select placeholder="1" mode="ios">
-				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
-			</ion-select>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of car(s)</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="vehicle_car">
+					<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of motorcycle(s)</ion-label>
-			<ion-select placeholder="1" mode="ios">
-				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
-			</ion-select>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of motorcycle(s)</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="vehicle_motorcycle">
+					<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of bicycle(s)</ion-label>
-			<ion-select placeholder="1" mode="ios">
-				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
-			</ion-select>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of bicycle(s)</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="vehicle_bicycle">
+					<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">No. of other vehicle(s)</ion-label>
-			<ion-select placeholder="1" mode="ios">
-				<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
-			</ion-select>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">No. of other vehicle(s)</ion-label>
+				<ion-select placeholder="1" mode="ios" formControlName="vehicle_other">
+					<ion-select-option *ngFor="let vehicle of vehicleOptions" value="{{vehicle.value}}">{{vehicle.value}}</ion-select-option>
+				</ion-select>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill month #1</ion-label>
-			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill month #1</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="electricity_bill_1_month"></ion-datetime>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill usage #1</ion-label>
-			<ion-input placeholder="1" mode="ios"></ion-input>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill usage #1</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_1_usage"></ion-input>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill month #2</ion-label>
-			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
-		  </ion-item>
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill document #1</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(1)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview1" *ngIf="imageSelectedPreview1"></ion-img>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill usage #2</ion-label>
-			<ion-input placeholder="1" mode="ios"></ion-input>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill month #2</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="electricity_bill_2_month"></ion-datetime>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill month #3</ion-label>
-			<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY"></ion-datetime>
-		  </ion-item>
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill usage #2</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_2_usage"></ion-input>
+			</ion-item>
 
-		  <ion-item class="item-form" lines="none">
-			<ion-label position="stacked" mode="ios">Electricity bill usage #3</ion-label>
-			<ion-input placeholder="1" mode="ios"></ion-input>
-		  </ion-item>
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill document #1</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(2)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview2" *ngIf="imageSelectedPreview2"></ion-img>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill month #3</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="electricity_bill_3_month"></ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill usage #3</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_3_usage"></ion-input>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Electricity bill document #3</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(3)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview3" *ngIf="imageSelectedPreview3"></ion-img>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill month #1</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="water_bill_1_month"></ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill usage #1</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="water_bill_1_usage"></ion-input>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill document #1</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(4)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview4" *ngIf="imageSelectedPreview4"></ion-img>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill month #2</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="water_bill_2_month"></ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill usage #2</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="water_bill_2_usage"></ion-input>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill document #2</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(5)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview5" *ngIf="imageSelectedPreview5"></ion-img>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill month #3</ion-label>
+				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="water_bill_3_month"></ion-datetime>
+			</ion-item>
+
+			<ion-item class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill usage #3</ion-label>
+				<ion-input placeholder="1" mode="ios" formControlName="water_bill_3_usage"></ion-input>
+			</ion-item>
+
+			<ion-item  class="item-form" lines="none">
+				<ion-label position="stacked" mode="ios">Water bill document #3</ion-label>
+				<ion-button mode="ios" color="primary" expand="block" (click)="openUploadSheet(6)">Upload</ion-button>
+				<ion-img [src]="imageSelectedPreview6" *ngIf="imageSelectedPreview6"></ion-img>
+			</ion-item>
 		</form>
-	  </ion-list>
+	</ion-list>
 </ion-content>
 
 <ion-footer class="ion-no-border ion-padding" mode="ios">

@@ -101,6 +101,10 @@ const routes: Routes = [
   {
     path: 'application-house',
     loadChildren: () => import('./core/application-house/application-house.module').then( m => m.ApplicationHousePageModule)
+  },
+  {
+    path: 'tips',
+    loadChildren: () => import('./core/tips/tips.module').then( m => m.TipsPageModule)
   }
 ];
 

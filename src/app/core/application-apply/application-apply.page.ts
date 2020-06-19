@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicationsService } from 'src/app/shared/services/applications/applications.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, PopoverController } from '@ionic/angular';
 import { NotifyService } from 'src/app/shared/handlers/notify/notify.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
 
 import { Vehicles } from 'src/assets/data/vehicles';
+import { TipsPage } from '../tips/tips.page';
 
 @Component({
   selector: 'app-application-apply',
@@ -48,6 +49,7 @@ export class ApplicationApplyPage implements OnInit {
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
     private fb: FormBuilder,
+    private popoverCtrl: PopoverController,
     private toastr: NotifyService,
     private router: Router
   ) { }
@@ -300,6 +302,16 @@ export class ApplicationApplyPage implements OnInit {
     this.router.navigate([path])
   }
 
-
+  async viewTips(type: any) {
+    const popover = await this.popoverCtrl.create({
+      component: TipsPage,
+      // cssClass: 'my-custom-class',
+      componentProps: {
+        'type': type
+      },
+      translucent: true
+    });
+    return await popover.present();
+  }
 
 }

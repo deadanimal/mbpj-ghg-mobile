@@ -27,7 +27,7 @@
             <h4 *ngIf="house.building_type == 'BS'">Bungalow / Semidetached</h4>
             <h4 *ngIf="house.building_type == 'AS'">Apartment / Service Apartment</h4>
             <h4 *ngIf="house.building_type == 'OT'">Other</h4>
-            <p>{{house.address}}, {{house.postcode}} {{area}}, Petaling Jaya, Selangor</p>
+            <p>{{house.address}}, {{house.postcode}} {{house.area}}, Petaling Jaya, Selangor</p>
           </ion-label>
           <ion-button size="small" shape="round" slot="end">View</ion-button>
         </ion-item>

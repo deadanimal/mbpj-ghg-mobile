@@ -68,12 +68,18 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Electricity bill month #1</ion-label>
-				<ion-datetime  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="electricity_bill_1_month"></ion-datetime>
+				<ion-datetime class="input-append"  placeholder="March 2020" mode="ios" displayFormat="MMMM YYYY" formControlName="electricity_bill_1_month"></ion-datetime>
 			</ion-item>
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Electricity bill usage #1</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_1_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="input-append" placeholder="1" mode="ios" formControlName="electricity_bill_1_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>kWh</span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">
@@ -89,7 +95,13 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Electricity bill usage #2</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_2_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="electricity input-append" placeholder="1" mode="ios" formControlName="electricity_bill_2_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>kWh</span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">
@@ -105,7 +117,13 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Electricity bill usage #3</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="electricity_bill_3_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="electricity input-append" placeholder="1" mode="ios" formControlName="electricity_bill_3_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>kWh</span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">
@@ -121,7 +139,13 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Water bill usage #1</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="water_bill_1_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="electricity input-append" placeholder="1" mode="ios" formControlName="water_bill_1_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>m<sup>3</sup></span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">
@@ -137,7 +161,13 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Water bill usage #2</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="water_bill_2_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="electricity input-append" placeholder="1" mode="ios" formControlName="water_bill_2_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>m<sup>3</sup></span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">
@@ -153,7 +183,13 @@
 
 			<ion-item class="item-form" lines="none">
 				<ion-label position="stacked" mode="ios">Water bill usage #3</ion-label>
-				<ion-input placeholder="1" mode="ios" formControlName="water_bill_3_usage"></ion-input>
+				<div class="input-group">
+					<ion-input class="electricity input-append" placeholder="1" mode="ios" formControlName="water_bill_3_usage">
+					</ion-input>
+					<div class="input-group-append">
+						<span>m<sup>3</sup></span>
+					</div>
+				</div>
 			</ion-item>
 
 			<ion-item  class="item-form" lines="none">

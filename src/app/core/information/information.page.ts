@@ -47,7 +47,7 @@ export class InformationPage implements OnInit {
       nric_new: new FormControl(this.user.nric_new, Validators.compose([
         Validators.required
       ])),
-      nric_doc: new FormControl(this.user.nric_doc, Validators.compose([
+      nric_doc: new FormControl(Validators.compose([
         Validators.required
       ])),
       mobile: new FormControl(this.user.mobile, Validators.compose([
@@ -112,7 +112,8 @@ export class InformationPage implements OnInit {
   }
 
   submit() {
-    this.userService.update(this.user.id).subscribe(
+    console.log(this.userForm.value)
+    this.userService.update(this.user.id, this.userForm.value).subscribe(
       () => {},
       () => {},
       () => {
@@ -157,7 +158,7 @@ export class InformationPage implements OnInit {
     // console.log('Gallery opened')
     let cameraOptions = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.FILE_URI,      
+      destinationType: this.camera.DestinationType.DATA_URL,      
       quality: 60,
       targetWidth: 1000,
       targetHeight: 1000,
@@ -169,9 +170,11 @@ export class InformationPage implements OnInit {
     this.camera.getPicture(cameraOptions)
       .then(
         (file_uri) => {
-          this.imageSelected = file_uri
-          this.imageSelectedPreview = (<any>window).Ionic.WebView.convertFileSrc(this.imageSelected);
+          this.imageSelected = 'data:image/jpeg;base64,' + file_uri
+          this.imageSelectedPreview = 'data:image/jpeg;base64,' + file_uri
           this.userForm.controls['nric_doc'].setValue(this.imageSelected)
+          console.log('control: ', this.userForm.value.nric_doc)
+          console.log('imgFile', this.imageSelected)
           // this.imageSelectedPreview = 'data:image/jpeg;base64,' + this.imageSelected
           // this.houseForm.controls['assessment_tax_doc'].setValue(this.imageSelectedPreview)
         },

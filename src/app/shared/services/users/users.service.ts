@@ -60,9 +60,9 @@ export class UsersService {
     )
   }
 
-  update(id: string) {
+  update(id: string, body: Form) {
     let urlTemp = this.urlUser + id + '/'
-    return this.http.get<User>(urlTemp).pipe(
+    return this.http.patch<User>(urlTemp, body).pipe(
       tap((res: User) => {
         this.user = res
         console.log('User: ', this.user)

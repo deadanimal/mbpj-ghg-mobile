@@ -1,5 +1,5 @@
 :host {
-    background: #fff no-repeat center/cover url('src/assets/img/background/bg-mbpj-2-blur.jpg');
+    background: #fff no-repeat center/cover url('src/assets/img/background/landing-tower.jpg');
     text-align: center;
     -ms-background-size: cover;
     -o-background-size: cover;
@@ -38,11 +38,12 @@ img {
     margin-bottom: 2vh;
     h2 {
         font-size: 1.5em;
-        color: white;
+        color: black; // white;
     }
 }
 
 .copyright {
     font-size: 0.8rem;
-    color: white;
+    font-weight: 500;
+    color: black; // white;
 }
